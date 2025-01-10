@@ -33,9 +33,6 @@ public class Users {
   @Column("roles")
   private List<Role> roles;
 
-  @Column("branch")
-  private String branch;
-
 
   public Users() {}
 
@@ -106,14 +103,6 @@ public class Users {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getBranch() {
-    return branch;
-  }
-
-  public void setBranch(String branch) {
-    this.branch = branch;
   }
 
   @Override
