@@ -51,7 +51,7 @@ public class BookService {
                                         .findById(userIdentifier)
                                         .flatMap(
                                                 u -> {
-                                                    b.doBorrow(u);
+                                                    b.doBorrow(u.getId());
                                                     return bookRepository.save(b).then();
                                                 })
                                         .switchIfEmpty(Mono.empty()))

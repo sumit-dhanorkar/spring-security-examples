@@ -35,7 +35,7 @@ public class BookRestController {
 
   @GetMapping("/books")
   public Flux<BookResource> getAllBooks() {
-    return bookService.findAll().map(bookResourceAssembler::toResource);
+    return bookService.findAll().flatMap(bookResourceAssembler::toResource);
   }
 
   @GetMapping("/books/" + PATH_BOOK_ID)
@@ -43,7 +43,7 @@ public class BookRestController {
           @PathVariable(PATH_VARIABLE_BOOK_ID) UUID bookId) {
     return bookService
             .findById(bookId)
-            .map(bookResourceAssembler::toResource)
+            .flatMap(bookResourceAssembler::toResource)
             .map(ResponseEntity::ok)
             .defaultIfEmpty(ResponseEntity.notFound().build());
   }

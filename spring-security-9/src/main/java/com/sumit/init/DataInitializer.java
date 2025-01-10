@@ -9,12 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -63,17 +65,21 @@ public class DataInitializer implements CommandLineRunner {
   public void run(String... args) throws InterruptedException {
 //    createUsers();
 //    createBooks();
+//    DelegatingPasswordEncoder oldPasswordEncoder =
+//            new DelegatingPasswordEncoder(
+//                    "MD5", Collections.singletonMap("MD5", new MessageDigestPasswordEncoder("MD5")));
+//
+//    userRepository.findAll()
+//            .publishOn(Schedulers.boundedElastic())
+//            .doOnNext(user -> {
+//              String encodedPassword = passwordEncoder.encode(user.getLastName().toLowerCase());
+//              user.setPassword(encodedPassword);
+//              userRepository.save(user).subscribe();
+//            }).subscribe();
 
 
-    boolean check = passwordEncoder.matches("wayne", "$2a$10$epekWs3wAOK8L9tsq6IF6.zuqtmG/n4vS8uiNMsA.tEeeKui8LChG");
-
-    System.out.println(check);
-    System.out.println(passwordEncoder.encode("wayne"));
-    System.out.println(passwordEncoder.encode("banner"));
-    System.out.println(passwordEncoder.encode("parker"));
-    System.out.println(passwordEncoder.encode("kent"));
-    System.out.println(passwordEncoder.encode("user"));
-
+//    System.out.println(passwordEncoder.encode("old@example.com"));
+//    System.out.println(oldPasswordEncoder.encode("user"));
   }
 
   private void createUsers() {
@@ -152,7 +158,7 @@ public class DataInitializer implements CommandLineRunner {
                                                             + "programmer—but only if you work at it.",
                                                     Collections.singletonList("Bob C. Martin"),
                                                     true,
-                                                    user),
+                                                    user.getId()),
                                             new Book(
                                                     BOOK_CLOUD_NATIVE_IDENTIFIER,
                                                     "9781449374648",

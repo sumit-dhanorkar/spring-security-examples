@@ -25,9 +25,6 @@ public class LibraryReactiveUserDetailsService
   @Override
   public Mono<UserDetails> findByUsername(String username) {
     LOGGER.info("Finding user for user name {}", username);
-//    userService.findOneByEmail(username).doOnNext(s-> {
-//      System.out.println(s.getEmail());
-//    }).subscribe();
     return userService.findOneByEmail(username).map(LibraryUsers::new);
   }
 

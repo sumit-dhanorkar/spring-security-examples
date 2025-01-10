@@ -1,8 +1,10 @@
 package com.sumit.model;
 
 import com.sumit.common.Role;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.List;
@@ -13,17 +15,27 @@ import java.util.UUID;
 public class Users {
 
   @Id
+  @Column("id")
   private UUID id;
 
+  @Column("email")
   private String email;
 
+  @Column("password")
   private String password;
 
+  @Column("first_name")
   private String firstName;
 
+  @Column("last_name")
   private String lastName;
 
+  @Column("roles")
   private List<Role> roles;
+
+  @Column("branch")
+  private String branch;
+
 
   public Users() {}
 
@@ -37,7 +49,7 @@ public class Users {
             user.getRoles());
   }
 
-  @PersistenceConstructor
+//  @PersistenceConstructor
   public Users(
           UUID id, String email, String password, String firstName, String lastName, List<Role> roles) {
     this.id = id;
@@ -94,6 +106,14 @@ public class Users {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getBranch() {
+    return branch;
+  }
+
+  public void setBranch(String branch) {
+    this.branch = branch;
   }
 
   @Override

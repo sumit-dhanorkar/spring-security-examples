@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.52">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>2345</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2470</IntrospectionStateNumber>
       <ServerVersion>15.2</ServerVersion>
       <StartupTime>1733928936</StartupTime>
       <TimeZones>true ACDT
@@ -842,7 +842,7 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>2345</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2470</IntrospectionStateNumber>
       <ObjectId>49594</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4263,186 +4263,276 @@ false Zulu
     <schema id="273" parent="12" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>2345</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2025-01-04.19:05:15</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>2470</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2025-01-08.18:41:12</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <table id="274" parent="273" name="book">
-      <ObjectId>49656</ObjectId>
-      <StateNumber>2344</StateNumber>
+      <ObjectId>49765</ObjectId>
+      <StateNumber>2469</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="275" parent="273" name="users">
-      <ObjectId>49647</ObjectId>
-      <StateNumber>2344</StateNumber>
+    <table id="275" parent="273" name="book_bkp">
+      <ObjectId>49676</ObjectId>
+      <StateNumber>2350</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="276" parent="274" name="id">
+    <table id="276" parent="273" name="user_bkp">
+      <ObjectId>49671</ObjectId>
+      <StateNumber>2348</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="277" parent="273" name="users">
+      <ObjectId>49756</ObjectId>
+      <StateNumber>2469</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="278" parent="274" name="id">
       <DasType>uuid|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2344</StateNumber>
+      <StateNumber>2469</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <column id="277" parent="274" name="isbn">
+    <column id="279" parent="274" name="isbn">
       <DasType>varchar(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2344</StateNumber>
+      <StateNumber>2469</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="278" parent="274" name="title">
+    <column id="280" parent="274" name="title">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>2344</StateNumber>
+      <StateNumber>2469</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="279" parent="274" name="description">
+    <column id="281" parent="274" name="description">
       <DasType>text|0s</DasType>
       <Position>4</Position>
-      <StateNumber>2344</StateNumber>
+      <StateNumber>2469</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="280" parent="274" name="authors">
+    <column id="282" parent="274" name="authors">
       <DasType>text[]|0s</DasType>
       <Position>5</Position>
-      <StateNumber>2344</StateNumber>
+      <StateNumber>2469</StateNumber>
       <TypeId>1009</TypeId>
     </column>
-    <column id="281" parent="274" name="borrowed">
+    <column id="283" parent="274" name="borrowed">
       <DasType>boolean|0s</DasType>
       <DefaultExpression>false</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
-      <StateNumber>2344</StateNumber>
+      <StateNumber>2469</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="282" parent="274" name="borrowed_by">
+    <column id="284" parent="274" name="borrowed_by">
       <DasType>uuid|0s</DasType>
       <Position>7</Position>
-      <StateNumber>2344</StateNumber>
+      <StateNumber>2469</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <foreign-key id="283" parent="274" name="book_borrowed_by_fkey">
+    <foreign-key id="285" parent="274" name="book_borrowed_by_fkey">
       <ColNames>borrowed_by</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49666</ObjectId>
-      <StateNumber>2344</StateNumber>
+      <ObjectId>49775</ObjectId>
+      <StateNumber>2469</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>49647</RefTableId>
+      <RefTableId>49756</RefTableId>
     </foreign-key>
-    <index id="284" parent="274" name="book_pkey">
+    <index id="286" parent="274" name="book_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49662</ObjectId>
+      <ObjectId>49771</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2344</StateNumber>
+      <StateNumber>2469</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="285" parent="274" name="book_isbn_key">
+    <index id="287" parent="274" name="book_isbn_key">
       <ColNames>isbn</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49664</ObjectId>
-      <StateNumber>2344</StateNumber>
+      <ObjectId>49773</ObjectId>
+      <StateNumber>2469</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="286" parent="274" name="book_pkey">
+    <key id="288" parent="274" name="book_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49663</ObjectId>
+      <ObjectId>49772</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2344</StateNumber>
-      <UnderlyingIndexId>49662</UnderlyingIndexId>
+      <StateNumber>2469</StateNumber>
+      <UnderlyingIndexId>49771</UnderlyingIndexId>
     </key>
-    <key id="287" parent="274" name="book_isbn_key">
+    <key id="289" parent="274" name="book_isbn_key">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49665</ObjectId>
-      <StateNumber>2344</StateNumber>
-      <UnderlyingIndexId>49664</UnderlyingIndexId>
+      <ObjectId>49774</ObjectId>
+      <StateNumber>2469</StateNumber>
+      <UnderlyingIndexId>49773</UnderlyingIndexId>
     </key>
-    <column id="288" parent="275" name="id">
+    <column id="290" parent="275" name="id">
+      <DasType>uuid|0s</DasType>
+      <Position>1</Position>
+      <StateNumber>2350</StateNumber>
+      <TypeId>2950</TypeId>
+    </column>
+    <column id="291" parent="275" name="isbn">
+      <DasType>varchar(20)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>2350</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="292" parent="275" name="title">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>2350</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="293" parent="275" name="description">
+      <DasType>text|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>2350</StateNumber>
+      <TypeId>25</TypeId>
+    </column>
+    <column id="294" parent="275" name="authors">
+      <DasType>text[]|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>2350</StateNumber>
+      <TypeId>1009</TypeId>
+    </column>
+    <column id="295" parent="275" name="borrowed">
+      <DasType>boolean|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>2350</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="296" parent="275" name="borrowed_by">
+      <DasType>uuid|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>2350</StateNumber>
+      <TypeId>2950</TypeId>
+    </column>
+    <column id="297" parent="276" name="id">
+      <DasType>uuid|0s</DasType>
+      <Position>1</Position>
+      <StateNumber>2348</StateNumber>
+      <TypeId>2950</TypeId>
+    </column>
+    <column id="298" parent="276" name="email">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>2348</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="299" parent="276" name="password">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>2348</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="300" parent="276" name="first_name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>2348</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="301" parent="276" name="last_name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>2348</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="302" parent="276" name="roles">
+      <DasType>text[]|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>2348</StateNumber>
+      <TypeId>1009</TypeId>
+    </column>
+    <column id="303" parent="277" name="id">
       <DasType>uuid|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2342</StateNumber>
+      <StateNumber>2467</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <column id="289" parent="275" name="email">
+    <column id="304" parent="277" name="email">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2342</StateNumber>
+      <StateNumber>2467</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="290" parent="275" name="password">
+    <column id="305" parent="277" name="password">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>2342</StateNumber>
+      <StateNumber>2467</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="291" parent="275" name="first_name">
+    <column id="306" parent="277" name="first_name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
-      <StateNumber>2342</StateNumber>
+      <StateNumber>2467</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="292" parent="275" name="last_name">
+    <column id="307" parent="277" name="last_name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StateNumber>2342</StateNumber>
+      <StateNumber>2467</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="293" parent="275" name="roles">
+    <column id="308" parent="277" name="roles">
       <DasType>text[]|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
-      <StateNumber>2342</StateNumber>
+      <StateNumber>2467</StateNumber>
       <TypeId>1009</TypeId>
     </column>
-    <index id="294" parent="275" name="users_pkey">
+    <index id="309" parent="277" name="users_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49652</ObjectId>
+      <ObjectId>49761</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2342</StateNumber>
+      <StateNumber>2467</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="295" parent="275" name="users_email_key">
+    <index id="310" parent="277" name="users_email_key">
       <ColNames>email</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49654</ObjectId>
-      <StateNumber>2342</StateNumber>
+      <ObjectId>49763</ObjectId>
+      <StateNumber>2467</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="296" parent="275" name="users_pkey">
+    <key id="311" parent="277" name="users_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49653</ObjectId>
+      <ObjectId>49762</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2342</StateNumber>
-      <UnderlyingIndexId>49652</UnderlyingIndexId>
+      <StateNumber>2467</StateNumber>
+      <UnderlyingIndexId>49761</UnderlyingIndexId>
     </key>
-    <key id="297" parent="275" name="users_email_key">
+    <key id="312" parent="277" name="users_email_key">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>49655</ObjectId>
-      <StateNumber>2342</StateNumber>
-      <UnderlyingIndexId>49654</UnderlyingIndexId>
+      <ObjectId>49764</ObjectId>
+      <StateNumber>2467</StateNumber>
+      <UnderlyingIndexId>49763</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

@@ -28,7 +28,7 @@ public class LibraryUsers extends Users implements UserDetails {
 
   @Override
   public String getPassword() {
-    return "n/a";
+    return super.getPassword();
   }
 
   @Override

@@ -9,6 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface UserRepository extends ReactiveCrudRepository<Users, UUID> {
-
     Mono<Users> findOneByEmail(String email);
 }

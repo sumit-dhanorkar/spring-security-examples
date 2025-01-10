@@ -2,6 +2,7 @@ package com.sumit.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.List;
@@ -14,23 +15,31 @@ import java.util.UUID;
 public class Book {
 
 
-    @Id private UUID id;
+    @Id
+    @Column("id")
+    private UUID id;
 
+    @Column("isbn")
     private String isbn;
 
+    @Column("title")
     private String title;
 
+    @Column("description")
     private String description;
 
+    @Column("authors")
     private List<String> authors;
 
+    @Column("borrowed")
     private boolean borrowed;
 
-    private Users borrowedBy;
+    @Column("borrowed_by")
+    private UUID borrowedBy;
 
     public Book() {}
 
-    @PersistenceConstructor
+//    @PersistenceConstructor
     public Book(
             UUID id,
             String isbn,
@@ -38,7 +47,7 @@ public class Book {
             String description,
             List<String> authors,
             boolean borrowed,
-            Users borrowedBy) {
+            UUID borrowedBy) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
@@ -92,11 +101,11 @@ public class Book {
         return borrowed;
     }
 
-    public Users getBorrowedBy() {
+    public UUID getBorrowedBy() {
         return borrowedBy;
     }
 
-    public void doBorrow(Users user) {
+    public void doBorrow(UUID user) {
         if (!this.borrowed) {
             this.borrowed = true;
             this.borrowedBy = user;
