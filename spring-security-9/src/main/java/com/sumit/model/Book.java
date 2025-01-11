@@ -37,6 +37,12 @@ public class Book {
     @Column("borrowed_by")
     private UUID borrowedBy;
 
+    @Column("branch")
+    private String branch;
+
+    @Column("year")
+    private String minimumYear;
+
     public Book() {}
 
 //    @PersistenceConstructor
@@ -103,6 +109,22 @@ public class Book {
 
     public UUID getBorrowedBy() {
         return borrowedBy;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public String getMinimumYear() {
+        return minimumYear;
+    }
+
+    public void setMinimumYear(String minimumYear) {
+        this.minimumYear = minimumYear;
     }
 
     public void doBorrow(UUID user) {

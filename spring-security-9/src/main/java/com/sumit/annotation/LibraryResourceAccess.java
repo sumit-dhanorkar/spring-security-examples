@@ -1,0 +1,13 @@
+package com.sumit.annotation;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@PreAuthorize("hasRole('LIBRARY_USER') and @libraryAccessEvaluator.hasAccessToBook(authentication, #bookId)")
+public @interface LibraryResourceAccess {}

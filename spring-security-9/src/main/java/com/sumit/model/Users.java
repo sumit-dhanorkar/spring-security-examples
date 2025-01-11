@@ -1,6 +1,7 @@
 package com.sumit.model;
 
 import com.sumit.common.Role;
+import com.sumit.common.Year;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
@@ -36,6 +37,9 @@ public class Users {
   @Column("branch")
   private String branch;
 
+  @Column("year")
+  private String year;
+
 
   public Users() {}
 
@@ -46,18 +50,23 @@ public class Users {
             user.getPassword(),
             user.getFirstName(),
             user.getLastName(),
-            user.getRoles());
+            user.getRoles(),
+            user.getBranch(),
+            user.getYear()
+    );
   }
 
 //  @PersistenceConstructor
   public Users(
-          UUID id, String email, String password, String firstName, String lastName, List<Role> roles) {
+          UUID id, String email, String password, String firstName, String lastName, List<Role> roles, String branch,String year) {
     this.id = id;
     this.email = email;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.roles = roles;
+    this.branch=branch;
+    this.year=year;
   }
 
   public UUID getId() {
@@ -114,6 +123,14 @@ public class Users {
 
   public void setBranch(String branch) {
     this.branch = branch;
+  }
+
+  public String  getYear() {
+    return year;
+  }
+
+  public void setYear(String year) {
+    this.year = year;
   }
 
   @Override

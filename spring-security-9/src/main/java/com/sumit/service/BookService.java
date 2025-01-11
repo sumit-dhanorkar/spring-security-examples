@@ -1,6 +1,7 @@
 package com.sumit.service;
 
 
+import com.sumit.annotation.LibraryResourceAccess;
 import com.sumit.model.Book;
 import com.sumit.repo.BookRepository;
 import com.sumit.repo.UserRepository;
@@ -13,7 +14,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @Service
-@PreAuthorize("hasAnyRole('LIBRARY_USER', 'LIBRARY_CURATOR')")
+//@PreAuthorize("hasAnyRole('LIBRARY_USER', 'LIBRARY_CURATOR')")
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -31,19 +32,21 @@ public class BookService {
         return book.flatMap(bookRepository::save).then();
     }
 
-    public Mono<Book> findById(UUID uuid) {
-        return bookRepository.findById(uuid);
+    @LibraryResourceAccess
+    public Mono<Book> findById(UUID bookId) {
+        return bookRepository.findById(bookId);
     }
 
-    @PreAuthorize("hasRole('LIBRARY_USER')")
-    public Mono<Void> borrowById(UUID bookIdentifier, UUID userIdentifier) {
+//    @PreAuthorize("hasRole('LIBRARY_USER')")
+    @LibraryResourceAccess
+    public Mono<Void> borrowById(UUID bookId, UUID userIdentifier) {
 
-        if (bookIdentifier == null || userIdentifier == null) {
+        if (bookId == null || userIdentifier == null) {
             return Mono.empty();
         }
 
         return bookRepository
-                .findById(bookIdentifier)
+                .findById(bookId)
                 .log()
                 .flatMap(
                         b ->
@@ -89,4 +92,6 @@ public class BookService {
     public Mono<Void> deleteById(UUID bookIdentifier) {
         return bookRepository.deleteById(bookIdentifier).then();
     }
+
+
 }

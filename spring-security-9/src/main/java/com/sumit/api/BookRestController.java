@@ -5,6 +5,7 @@ import com.sumit.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,7 @@ public class BookRestController {
   @GetMapping("/books/" + PATH_BOOK_ID)
   public Mono<ResponseEntity<BookResource>> getBookById(
           @PathVariable(PATH_VARIABLE_BOOK_ID) UUID bookId) {
+
     return bookService
             .findById(bookId)
             .flatMap(bookResourceAssembler::toResource)
@@ -70,5 +72,7 @@ public class BookRestController {
   public Mono<Void> deleteBook(@PathVariable(PATH_VARIABLE_BOOK_ID) UUID bookId) {
     return bookService.deleteById(bookId);
   }
+
+
 }
 

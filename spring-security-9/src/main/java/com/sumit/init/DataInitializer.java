@@ -69,13 +69,13 @@ public class DataInitializer implements CommandLineRunner {
 //            new DelegatingPasswordEncoder(
 //                    "MD5", Collections.singletonMap("MD5", new MessageDigestPasswordEncoder("MD5")));
 //
-//    userRepository.findAll()
-//            .publishOn(Schedulers.boundedElastic())
-//            .doOnNext(user -> {
-//              String encodedPassword = passwordEncoder.encode(user.getLastName().toLowerCase());
-//              user.setPassword(encodedPassword);
-//              userRepository.save(user).subscribe();
-//            }).subscribe();
+    userRepository.findAll()
+            .publishOn(Schedulers.boundedElastic())
+            .doOnNext(user -> {
+              String encodedPassword = passwordEncoder.encode(user.getLastName().toLowerCase());
+              user.setPassword(encodedPassword);
+              userRepository.save(user).subscribe();
+            }).subscribe();
 
 
 //    System.out.println(passwordEncoder.encode("old@example.com"));
@@ -99,35 +99,46 @@ public class DataInitializer implements CommandLineRunner {
                                     passwordEncoder.encode("wayne"),
                                     "Bruce",
                                     "Wayne",
-                                    Collections.singletonList(Role.LIBRARY_USER)),
+                                    Collections.singletonList(Role.LIBRARY_USER),
+                                    "ME",
+                                    "THIRD_YEAR"
+                            ),
                             new Users(
                                     USER_BANNER_IDENTIFIER,
                                     "bruce.banner@example.com",
                                     passwordEncoder.encode("banner"),
                                     "Bruce",
                                     "Banner",
-                                    Collections.singletonList(Role.LIBRARY_USER)),
+                                    Collections.singletonList(Role.LIBRARY_USER),
+                                    "CS",
+                                    "FIRST_YEAR"),
                             new Users(
                                     CURATOR_IDENTIFIER,
                                     "peter.parker@example.com",
                                     passwordEncoder.encode("parker"),
                                     "Peter",
                                     "Parker",
-                                    Collections.singletonList(Role.LIBRARY_CURATOR)),
+                                    Collections.singletonList(Role.LIBRARY_CURATOR),
+                                    "IT",
+                                    "FOURTH_YEAR"),
                             new Users(
                                     ADMIN_IDENTIFIER,
                                     "clark.kent@example.com",
                                     passwordEncoder.encode("kent"),
                                     "Clark",
                                     "Kent",
-                                    Collections.singletonList(Role.LIBRARY_ADMIN)),
+                                    Collections.singletonList(Role.LIBRARY_ADMIN),
+                                    "ETC",
+                                    "FIRST_YEAR"),
                             new Users(
                                     ENCRYPT_UPGRADE_USER_IDENTIFIER,
                                     "old@example.com",
                                     oldPasswordEncoder.encode("user"),
                                     "Library",
                                     "OldEncryption",
-                                    Collections.singletonList(Role.LIBRARY_USER))))
+                                    Collections.singletonList(Role.LIBRARY_USER),
+                                    "CE",
+                                    "SECOND_YEAR")))
             .log()
             .then(userRepository.count())
             .subscribe(c -> logger.info("{} users created", c));
